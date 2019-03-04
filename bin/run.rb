@@ -61,3 +61,14 @@ require 'pry'
 
 # My_window.new.show
 # puts "HELLO WORLD"
+
+
+ali = User.new(name: "Ali")
+charlotte = User.new(name: "Charlotte")
+
+kit1 = Kit.new(user_id: ali.id)
+kit2 = Kit.new(user_id: charlotte.id)
+
+
+
+
