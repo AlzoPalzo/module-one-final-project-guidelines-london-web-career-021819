@@ -17,7 +17,7 @@ require 'pry'
 #     when Gosu::KB_A
 #         @sound
 #     end
-    
+
 # end
 
 
@@ -53,7 +53,7 @@ require 'pry'
 #             @play_sounds.play_s2
 #         end
 #     end
-    
+
 #     def draw
 #     # ...
 #     end
@@ -61,14 +61,20 @@ require 'pry'
 
 # My_window.new.show
 # puts "HELLO WORLD"
+#
+# ali = User.create(name: "Ali")
+# charlotte = User.create(name: "Charlotte")
+#
+# kit1 = Kit.create(user_id: ali.id, name: "kit1")
+# kit2 = Kit.create(user_id: charlotte.id, name: "kit2")
+#
+#
 
-
-ali = User.create(name: "Ali")
-charlotte = User.create(name: "Charlotte")
-
-kit1 = Kit.create(user_id: ali.id, name: "kit1")
-kit2 = Kit.create(user_id: charlotte.id, name: "kit2")
-
-
-
-
+def populate
+  x = Dir["../lib/sounds/DrumHits4"]
+  x.each do |i|
+    Sound.create(path: i)
+  end
+end
+binding.pry
+akdjhfadsfhg
