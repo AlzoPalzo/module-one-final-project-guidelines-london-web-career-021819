@@ -61,3 +61,14 @@ require 'pry'
 
 # My_window.new.show
 # puts "HELLO WORLD"
+
+
+ali = User.create(name: "Ali")
+charlotte = User.create(name: "Charlotte")
+
+kit1 = Kit.create(user_id: ali.id, name: "kit1")
+kit2 = Kit.create(user_id: charlotte.id, name: "kit2")
+
+
+
+
