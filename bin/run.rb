@@ -63,11 +63,11 @@ require 'pry'
 # puts "HELLO WORLD"
 
 
-ali = User.new(name: "Ali")
-charlotte = User.new(name: "Charlotte")
+ali = User.create(name: "Ali")
+charlotte = User.create(name: "Charlotte")
 
-kit1 = Kit.new(user_id: ali.id)
-kit2 = Kit.new(user_id: charlotte.id)
+kit1 = Kit.create(user_id: ali.id, name: "kit1")
+kit2 = Kit.create(user_id: charlotte.id, name: "kit2")
 
 
 
