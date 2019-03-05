@@ -27,9 +27,21 @@ def initialize_user
   end
 end
 end
+
+def choose_kit_prompt
+  puts "Choose a drumkit to play"
+  puts "a = drumkit 1"
+end
+
+def choose_kit
+  choose_kit_prompt
+  gets.chomp
+#add the code that starts the window with interactive keys
+end
+
 greeting
 initialize_user
-
+choose_kit
 
 # class ASound < Gosu::Window
 #     def initialize
