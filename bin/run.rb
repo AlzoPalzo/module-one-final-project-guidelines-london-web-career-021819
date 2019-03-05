@@ -61,20 +61,20 @@ require 'pry'
 
 # My_window.new.show
 # puts "HELLO WORLD"
-#
+
 # ali = User.create(name: "Ali")
 # charlotte = User.create(name: "Charlotte")
-#
+
 # kit1 = Kit.create(user_id: ali.id, name: "kit1")
 # kit2 = Kit.create(user_id: charlotte.id, name: "kit2")
 #
-#
+# #
 
-def populate
-  x = Dir["../lib/sounds/DrumHits4"]
-  x.each do |i|
-    Sound.create(path: i)
-  end
-end
-binding.pry
-akdjhfadsfhg
+# def populate
+#   x = Dir.entries("lib/sounds/DrumHits3")
+#   x.each do |i|
+#     Sound.create(sound_path: "lib/sounds/DrumHits3/"+i)
+#   end
+# end
+# binding.pry
+# 0
