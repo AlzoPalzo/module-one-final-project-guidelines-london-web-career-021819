@@ -29,13 +29,12 @@ def initialize_user
     end
   end
   this_user.default_kit
-end
-
+  this_user
 end
 
 def choose_kit_prompt
   puts "Choose a drumkit to play"
-  puts "a = drumkit 1"
+  puts "a = #{Kit.find_by_user_id(a.id).name}"
 end
 
 def choose_kit
@@ -44,11 +43,12 @@ def choose_kit
 #add the code that starts the window with interactive keys
 end
 
+populate
 greeting
-initialize_user
-choose_kit
-=======
-binding.pry
+a = initialize_user
+a.play_kit
+
+# binding.pry
 "oioioioi"
 
 # greeting

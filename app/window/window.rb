@@ -24,7 +24,7 @@ class User_kit
 end
 
 class My_window < Gosu::Window
-    def initialize(username, kit_name, ks1, ks2 ,ks3 ,ks4)
+    def initialize(username, kit_name, ks1, ks2, ks3, ks4)
         super 640, 480
         self.caption = "#{username}'s #{kit_name}"
 
