@@ -1,6 +1,41 @@
 require_relative '../config/environment'
 require 'pry'
 
+def greeting
+  puts "Hello, please enter your name"
+  print ":"
+end
+
+def get_username
+  name = gets.chomp
+  puts "Hello #{name}"
+  name
+end
+
+def initialize_user
+  this_user = nil
+  user_name = get_username
+  all_users = User.all.map {|user| user.name}
+  a = true
+  while a == true
+    if all_users.include?(user_name)
+      puts "Sorry, that name is taken.  Try again."
+      print ":"
+      user_name = get_username
+    else
+      a = false
+      this_user = User.create(name: user_name)
+      this_user
+    end
+  end
+  this_user.default_kit
+end
+binding.pry
+"oioioioi"
+
+
+# greeting
+# initialize_user
 # class ASound < Gosu::Window
 #     def initialize
 #         @s1 =Gosu::Sample.new("lib/sounds/Kits/01/Bass.wav")
@@ -70,13 +105,8 @@ require 'pry'
 #
 # #
 
-# def populate
-#   x = Dir.entries("lib/sounds/DrumHits3")
-#   x.each do |i|
-#     Sound.create(sound_path: "lib/sounds/DrumHits3/"+i)
-#   end
-# end
-# binding.pry
+#
+#
 # 0
 
 
@@ -101,12 +131,5 @@ require 'pry'
 #     end
 
 # end
-
-user1 = User.first
-kit1 = Kit.first
-ks1 = Kitsound.first
-ks2 = Kitsound.all[1]
-ks3 = Kitsound.all[2]
-ks4 = Kitsound.all[3]
-pry
+#pry
 0
