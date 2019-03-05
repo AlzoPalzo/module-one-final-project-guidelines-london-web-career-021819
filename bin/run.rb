@@ -1,7 +1,7 @@
 require_relative '../config/environment'
 require 'pry'
 
-# class Sound < Gosu::Window
+# class ASound < Gosu::Window
 #     def initialize
 #         @s1 =Gosu::Sample.new("lib/sounds/Kits/01/Bass.wav")
 #         @s2 =Gosu::Sample.new("lib/sounds/Kits/01/BassStab.wav")
@@ -79,4 +79,28 @@ require 'pry'
 # binding.pry
 # 0
 
-kit
+
+# kit1 = Kit.first
+# sound1 = Sound.first
+# ks1 = Kitsound.first
+
+# class ASound < Gosu::Window
+#     def initialize(ks)
+#         @s1 =Gosu::Sample.new(Sound.find(ks.sound_id).sound_path)
+#     end
+
+#     def play_sound
+#         @s1.play
+#     end
+# end
+
+# def button_a(id)
+#     case id
+#     when Gosu::KB_A
+#         @sound
+#     end
+
+# end
+
+pry
+0
