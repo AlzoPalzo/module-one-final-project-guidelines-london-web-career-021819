@@ -102,5 +102,11 @@ require 'pry'
 
 # end
 
+user1 = User.first
+kit1 = Kit.first
+ks1 = Kitsound.first
+ks2 = Kitsound.all[1]
+ks3 = Kitsound.all[2]
+ks4 = Kitsound.all[3]
 pry
 0
