@@ -55,8 +55,8 @@ a.play_kit
 # initialize_user
 # class ASound < Gosu::Window
 #     def initialize
-#         @s1 =Gosu::Sample.new("lib/sounds/Kits/01/Bass.wav")
-#         @s2 =Gosu::Sample.new("lib/sounds/Kits/01/BassStab.wav")
+#         @s1 =Gosu::Sample.new("lib/sounds/DrumKit1/Atmos1.wav")
+#         @s2 =Gosu::Sample.new("lib/sounds/DrumKit1/Bass1.wav")
 #     end
 
 #     def play_sound
@@ -75,8 +75,8 @@ a.play_kit
 
 # class Play_sounds
 #     def initialize
-#         @s1 =Gosu::Sample.new("lib/sounds/Kits/01/Bass.wav")
-#         @s2 =Gosu::Sample.new("lib/sounds/Kits/01/BassStab.wav")
+#         @s1 =Gosu::Sample.new("lib/sounds/DrumKit1/Atmos1.wav")
+#         @s2 =Gosu::Sample.new("lib/sounds/DrumKit1/Bass1.wav")
 #     end
 
 #     def play_s1

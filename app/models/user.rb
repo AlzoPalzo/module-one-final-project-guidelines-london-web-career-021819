@@ -36,11 +36,15 @@ class User < ActiveRecord::Base
         kit = my_kits[0]
         my_kitsounds = kitsounds_from_kit(kit)
         ks1 = my_kitsounds[0]
+        sp1 = Sound.find(ks1.sound_id).sound_path
         ks2 = my_kitsounds[1]
+        sp2 = Sound.find(ks2.sound_id).sound_path
         ks3 = my_kitsounds[2]
+        sp3 = Sound.find(ks3.sound_id).sound_path
         ks4 = my_kitsounds[3]
+        sp4 = Sound.find(ks4.sound_id).sound_path
         # binding.pry
-        My_window.new(self.name, kit.name, ks1, ks2, ks3, ks4).show
+        My_window.new(self.name, kit.name, sp1, sp2, sp3, sp4).show
       end
     end
   end
