@@ -13,6 +13,7 @@ def get_username
 end
 
 def initialize_user
+  this_user = nil
   user_name = get_username
   all_users = User.all.map {|user| user.name}
   a = true
@@ -22,10 +23,14 @@ def initialize_user
       print ":"
       user_name = get_username
     else
-      User.create(name: user_name)
       a = false
+      this_user = User.create(name: user_name)
+      this_user
+    end
   end
+  this_user.default_kit
 end
+
 end
 
 def choose_kit_prompt
@@ -42,7 +47,12 @@ end
 greeting
 initialize_user
 choose_kit
+=======
+binding.pry
+"oioioioi"
 
+# greeting
+# initialize_user
 # class ASound < Gosu::Window
 #     def initialize
 #         @s1 =Gosu::Sample.new("lib/sounds/Kits/01/Bass.wav")
@@ -112,12 +122,7 @@ choose_kit
 #
 # #
 
-# def populate
-#   x = Dir.entries("lib/sounds/DrumHits3")
-#   x.each do |i|
-#     Sound.create(sound_path: "lib/sounds/DrumHits3/"+i)
-#   end
-# end
+#
 #
 # 0
 
@@ -143,6 +148,5 @@ choose_kit
 #     end
 
 # end
-
-pry
+#pry
 0
