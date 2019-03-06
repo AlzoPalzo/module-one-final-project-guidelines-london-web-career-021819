@@ -75,6 +75,7 @@ end
 
 populate
 greeting
+
 this_user = new_user?
 this_user.get_chosen_kit
 
@@ -83,6 +84,7 @@ this_user.get_chosen_kit
 
 # greeting
 # initialize_user
+
 # class ASound < Gosu::Window
 #     def initialize
 #         @s1 =Gosu::Sample.new("lib/sounds/DrumKit1/Atmos1.wav")
@@ -92,14 +94,6 @@ this_user.get_chosen_kit
 #     def play_sound
 #         @sound.play
 #     end
-# end
-
-# def button_a(id)
-#     case id
-#     when Gosu::KB_A
-#         @sound
-#     end
-
 # end
 
 
@@ -179,13 +173,3 @@ this_user.get_chosen_kit
 
 # end
 #pry
-# 0
-# 1
-# ks1
-# 2
-# kit2
-# 3
-# k3
-#
-# 4
-# listen all kicks
