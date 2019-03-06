@@ -3,14 +3,22 @@ class User < ActiveRecord::Base
 
   def default_kit
     default_kit = Kit.create(name: "#{self.name}'s' default", user_id: self.id)
-    ks1 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[0].id)
-    ks2 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[1].id)
-    ks3 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[2].id)
-    ks4 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[3].id)
+    ks1 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[3].id)
+    ks2 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[0].id)
+    ks3 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[1].id)
+    ks4 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[5].id)
   end
 
   def my_kits
     Kit.where(user_id: self.id)
+  end
+
+  def delete_kit(num)
+    choice = my_kits[num-1].id
+    Kitsound.where(kit_id: choice).each do |kitsound|
+      kitsound.delete
+    end
+      Kit.find(choice).delete
   end
 
   def kit_sound_paths(inkit)
@@ -19,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def user_choice
-    puts "Please choose from one of the following kits by number\n Press 'n' to make a new kit\n Type 'exit' to quit."
+    puts "Please choose from one of the following kits by number\n Press 'n' to make a new kit\n Press 'd#' to delete a kit\n Type 'exit' to quit."
     my_kits.each_with_index {|kit, index| puts "#{index + 1}: #{kit.name}"}
     gets.chomp
   end
@@ -39,6 +47,9 @@ class User < ActiveRecord::Base
       end
       if string_choice == "n"
         make_new_kit
+      end
+      if string_choice[0].downcase == "d" && string_choice[1].to_i <= my_kits.length
+        delete_kit(string_choice[1].to_i)
       end
       choice = string_choice.to_i
       if choice < 1 || choice.to_i > my_kits.length
