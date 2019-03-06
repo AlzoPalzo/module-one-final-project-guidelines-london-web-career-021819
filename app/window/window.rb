@@ -54,8 +54,9 @@ class My_window < Gosu::Window
              close
          end
     end
-
-    def draw
-
+    def draw   
+    end
+    def needs_cursor?
+        true
     end
 end
