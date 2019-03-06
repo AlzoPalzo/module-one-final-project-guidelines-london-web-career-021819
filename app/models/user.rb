@@ -19,14 +19,13 @@ class User < ActiveRecord::Base
   end
 
   def user_choice
-    puts "Please choose from one of the following kits by number"
+    puts "Please choose from one of the following kits by number\n Press 'n' to make a new kit\n Type 'exit' to quit."
     my_kits.each_with_index {|kit, index| puts "#{index + 1}: #{kit.name}"}
     gets.chomp
   end
 
 
   def play_kit(kit)
-    binding.pry
     sp_ary = kit_sound_paths(kit)
     My_window.new(self.name, kit.name, sp_ary[0], sp_ary[1], sp_ary[2], sp_ary[3]).show
   end
@@ -38,6 +37,9 @@ class User < ActiveRecord::Base
       if string_choice == "exit"
         return 0
       end
+      if string_choice == "n"
+        make_new_kit
+      end
       choice = string_choice.to_i
       if choice < 1 || choice.to_i > my_kits.length
         puts "You have made an invalid choice, please try again"
@@ -48,6 +50,38 @@ class User < ActiveRecord::Base
     end
   end
 
+  def make_new_kit
+    puts "Name your kit"
+    kit_name = gets.chomp
+    new_kit = Kit.create(name: kit_name, user_id: self.id)
+    kick_search(new_kit)
+  end
 
+  def populate_kit
 
+  end
+  def kick_search(new_kit)
+    kicks = Sound.where('sound_path LIKE ?','%Kick%').all
+    kicks.each_with_index do |kick, index|
+      puts "Kick #{index +1}"
+    end
+    puts "Press P to hear all kicks"
+      kick = 0
+      kick_choice = 0
+    while kick_choice < 1 || kick_choice > kicks.length
+       skick_choice = gets.chomp
+       if skick_choice.downcase == "p"
+       end
+       kick_choice = skick_choice.to_i
+       if kick_choice < 0 || kick_choice > kicks.length
+         puts "You have made an invalid choice, please try again"
+      else kick = kicks[kick_choice - 1].id
+      end
+    end
+    save_kick_to_kit(new_kit, kick)
+  end
+
+  def save_kick_to_kit(new_kit, kick)
+    Kitsound.create(kit_id: new_kit.id, sound_id: kick)
+  end
 end
