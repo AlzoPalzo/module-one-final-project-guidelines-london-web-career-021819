@@ -55,11 +55,12 @@ class User < ActiveRecord::Base
     kit_name = gets.chomp
     new_kit = Kit.create(name: kit_name, user_id: self.id)
     kick_search(new_kit)
+    snare_search(new_kit)
+    hat_search(new_kit)
+    fx_search(new_kit)
   end
 
-  def populate_kit
 
-  end
   def kick_search(new_kit)
     kicks = Sound.where('sound_path LIKE ?','%Kick%').all
     kicks.each_with_index do |kick, index|
@@ -78,10 +79,75 @@ class User < ActiveRecord::Base
       else kick = kicks[kick_choice - 1].id
       end
     end
-    save_kick_to_kit(new_kit, kick)
+    save_sound_to_kit(new_kit, kick)
   end
 
-  def save_kick_to_kit(new_kit, kick)
-    Kitsound.create(kit_id: new_kit.id, sound_id: kick)
+  def snare_search(new_kit)
+    snares = Sound.where('sound_path LIKE ?','%Snare%').all
+    snares.each_with_index do |snare, index|
+      puts "Snare #{index +1}"
+    end
+    puts "Press P to hear all snares"
+      snare = 0
+      snare_choice = 0
+    while snare_choice < 1 || snare_choice > snares.length
+       ssnare_choice = gets.chomp
+       if ssnare_choice.downcase == "p"
+       end
+       snare_choice = ssnare_choice.to_i
+       if snare_choice < 0 || snare_choice > snares.length
+         puts "You have made an invalid choice, please try again"
+      else snare = snares[snare_choice - 1].id
+      end
+    end
+    save_sound_to_kit(new_kit, snare)
   end
+
+  def hat_search(new_kit)
+    hats = Sound.where('sound_path LIKE ?','%Hat%').all
+    hats.each_with_index do |hat, index|
+      puts "Hat #{index +1}"
+    end
+    puts "Press P to hear all snares"
+      hat = 0
+      hat_choice = 0
+    while hat_choice < 1 || hat_choice > hats.length
+       shat_choice = gets.chomp
+       if shat_choice.downcase == "p"
+       end
+       hat_choice = shat_choice.to_i
+       if hat_choice < 0 || hat_choice > hats.length
+         puts "You have made an invalid choice, please try again"
+      else hat = hats[hat_choice - 1].id
+      end
+    end
+    save_sound_to_kit(new_kit, hat)
+  end
+
+  def fx_search(new_kit)
+    fxs = Sound.where('sound_path LIKE ?','%FX%').all
+    fxs.each_with_index do |fx, index|
+      puts "FX #{index +1}"
+    end
+    puts "Press P to hear all FX"
+      fx = 0
+      fx_choice = 0
+    while fx_choice < 1 || fx_choice > fxs.length
+       sfx_choice = gets.chomp
+       if sfx_choice.downcase == "p"
+       end
+       fx_choice = sfx_choice.to_i
+       if fx_choice < 0 || fx_choice > fxs.length
+         puts "You have made an invalid choice, please try again"
+      else fx = fxs[fx_choice - 1].id
+      end
+    end
+    save_sound_to_kit(new_kit, fx)
+  end
+
+
+  def save_sound_to_kit(new_kit, sound)
+      Kitsound.create(kit_id: new_kit.id, sound_id: sound)
+  end
+
 end
