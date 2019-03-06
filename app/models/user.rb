@@ -93,6 +93,9 @@ class User < ActiveRecord::Base
     while sound_choice < 1 || sound_choice > sounds.length
       s_sound_choice = gets.chomp
       if s_sound_choice.downcase == "p"
+        Example_sounds.play_examples(type)
+        puts "Press 'p' to listen again"
+        next
       end
       sound_choice = s_sound_choice.to_i
       if sound_choice < 0 || sound_choice > sounds.length

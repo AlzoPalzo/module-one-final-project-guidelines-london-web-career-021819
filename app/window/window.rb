@@ -26,7 +26,8 @@ end
 class My_window < Gosu::Window
     def initialize(username, kit_name, sp1, sp2, sp3, sp4)
         super 640, 480
-        self.caption = "#{username}'s #{kit_name}"
+    
+        self.caption = "User: #{username}      Kit: #{kit_name}"
         @user_kit = User_kit.new(sp1, sp2, sp3, sp4)
     end
 
