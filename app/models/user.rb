@@ -27,8 +27,9 @@ class User < ActiveRecord::Base
   end
 
   def user_choice
-    puts "Please choose from one of the following kits by number\n Press 'n' to make a new kit\n Press 'd#' to delete a kit\n Type 'exit' to quit."
-    my_kits.each_with_index {|kit, index| puts "#{index + 1}: #{kit.name}"}
+    puts "\nPlease choose from one of the following kits by number"
+    my_kits.each_with_index {|kit, index| puts " #{index + 1}: #{kit.name}"}
+    puts "\nOr \n Press 'n' to make a new kit\n Press 'd#' to delete a kit\n Type 'exit' to quit."
     i = ""
     while i.empty?
       i = gets.chomp
