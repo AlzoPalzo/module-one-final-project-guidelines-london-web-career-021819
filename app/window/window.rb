@@ -1,14 +1,9 @@
 class User_kit
     def initialize(sp1, sp2 ,sp3, sp4)
-        @sp1 = sp1
-        @sp2 = sp2
-        @sp3 = sp3
-        @sp4 = sp4
-        @s1 =Gosu::Sample.new(@sp1)
-        pry
-        @s2 =Gosu::Sample.new(@sp2)
-        @s3 =Gosu::Sample.new(@sp3)
-        @s4 =Gosu::Sample.new(@sp4)        
+        @s1 = Gosu::Sample.new(sp1)
+        @s2 = Gosu::Sample.new(sp2)
+        @s3 = Gosu::Sample.new(sp3)
+        @s4 = Gosu::Sample.new(sp4)        
     end
 
     def play_s1
@@ -32,10 +27,6 @@ class My_window < Gosu::Window
     def initialize(username, kit_name, sp1, sp2, sp3, sp4)
         super 640, 480
         self.caption = "#{username}'s #{kit_name}"
-        @sp1 = sp1
-        @sp2 = sp2
-        @sp3 = sp3
-        @sp4 = sp4
         @user_kit = User_kit.new(sp1, sp2, sp3, sp4)
     end
 

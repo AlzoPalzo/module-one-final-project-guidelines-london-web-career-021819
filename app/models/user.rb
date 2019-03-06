@@ -9,42 +9,40 @@ class User < ActiveRecord::Base
     ks4 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[3].id)
   end
 
-  def choose_kit_prompt
-    puts "Choose a drumkit to play or type exit to close"
-    puts "1: #{Kit.find_by_user_id(self.id).name}"
-  end
-
-  def choose_kit
-    choose_kit_prompt
-    gets.chomp
-  #add the code that starts the window with interactive keys
-  end
-
   def my_kits
-      Kit.where(user_id: self.id)
+    Kit.where(user_id: self.id)
   end
 
-  def kitsounds_from_kit(this_kit)
-    Kitsound.where(kit_id: this_kit.id)
+  def kit_sound_paths(inkit)
+    chosen_kitsounds = Kitsound.where(kit_id: inkit.id)
+    chosen_kitsounds.map{|kitsound| Sound.find(kitsound.sound_id).sound_path}
   end
 
-  def play_kit
-    user_choice = ""
-    while user_choice != "exit"
-      user_choice = choose_kit
-      if user_choice == "1"
-        kit = my_kits[0]
-        my_kitsounds = kitsounds_from_kit(kit)
-        ks1 = my_kitsounds[0]
-        sp1 = Sound.find(ks1.sound_id).sound_path
-        ks2 = my_kitsounds[1]
-        sp2 = Sound.find(ks2.sound_id).sound_path
-        ks3 = my_kitsounds[2]
-        sp3 = Sound.find(ks3.sound_id).sound_path
-        ks4 = my_kitsounds[3]
-        sp4 = Sound.find(ks4.sound_id).sound_path
-        # binding.pry
-        My_window.new(self.name, kit.name, sp1, sp2, sp3, sp4).show
+  def user_choice
+    puts "Please choose from one of the following kits by number"
+    my_kits.each_with_index {|kit, index| puts "#{index + 1}: #{kit.name}"}
+    gets.chomp
+  end
+
+
+  def play_kit(kit)
+    sp_ary = kit_sound_paths(kit)
+    My_window.new(self.name, kit.name, sp_ary[0], sp_ary[1], sp_ary[2], sp_ary[3]).show
+  end
+
+  def get_chosen_kit
+    chosen_kit = nil
+    while true
+      string_choice = user_choice
+      if string_choice == "exit"
+        return 0
+      end
+      choice = string_choice.to_i
+      if choice < 1 || choice.to_i > my_kits.length
+        puts "You have made an invalid choice, please try again"
+      else
+        chosen_kit = my_kits[choice - 1]
+        play_kit(chosen_kit)
       end
     end
   end
