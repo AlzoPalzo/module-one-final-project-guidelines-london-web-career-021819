@@ -26,9 +26,8 @@ class User < ActiveRecord::Base
 
 
   def play_kit(kit)
-    binding.pry
     sp_ary = kit_sound_paths(kit)
-    My_window.new(self.name, kit.name, sp_ary[0], sp_ary[1], sp_ary[2], sp_ary[3]).show
+    My_window.new(self.name, kit.name, sp_ary[0], sp_ary[1], sp_ary[2], sp_ary[3])
   end
 
   def get_chosen_kit
@@ -47,7 +46,4 @@ class User < ActiveRecord::Base
       end
     end
   end
-
-
-
 end
