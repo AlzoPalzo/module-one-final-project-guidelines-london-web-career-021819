@@ -3,7 +3,7 @@ class User_kit
         @s1 = Gosu::Sample.new(sp1)
         @s2 = Gosu::Sample.new(sp2)
         @s3 = Gosu::Sample.new(sp3)
-        @s4 = Gosu::Sample.new(sp4)        
+        @s4 = Gosu::Sample.new(sp4)
     end
 
     def play_s1
@@ -33,19 +33,23 @@ class My_window < Gosu::Window
     def update
          if Gosu.button_down? Gosu::KB_A
              @user_kit.play_s1
+             sleep(0.2)
          end
 
          if Gosu.button_down? Gosu::KB_D
              @user_kit.play_s2
+             sleep(0.2)
          end
 
          if Gosu.button_down? Gosu::KB_H
              @user_kit.play_s3
+             sleep(0.2)
          end
 
          if Gosu.button_down? Gosu::KB_K
              @user_kit.play_s4
-         end         
+             sleep(0.2)
+         end
          if Gosu.button_down? Gosu::KB_ESCAPE
              close
          end
