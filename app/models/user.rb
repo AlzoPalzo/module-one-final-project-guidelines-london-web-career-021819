@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
   end
 
   def user_choice_menu
+    puts
     prompt = TTY::Prompt.new
     prompt.select('Select an Option') do |menu|
       menu.choice name: 'Make new kit',  value: 1
@@ -87,9 +88,6 @@ class User < ActiveRecord::Base
     sound_search(new_kit, "snare")
     sound_search(new_kit, "hat")
     sound_search(new_kit, "FX")
-    # snare_search(new_kit)
-    # hat_search(new_kit)
-    # fx_search(new_kit)
   end
 
 
