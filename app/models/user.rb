@@ -13,13 +13,15 @@ class User < ActiveRecord::Base
     Kit.where(user_id: self.id)
   end
 
-  def delete_kit(num)
-    choice = my_kits[num-1].id
-    Kitsound.where(kit_id: choice).each do |kitsound|
+  def delete_kit
+    choice = user_choice.to_i
+    kit_choice = my_kits[choice-1].id
+    Kitsound.where(kit_id: kit_choice).each do |kitsound|
       kitsound.delete
     end
-      Kit.find(choice).delete
+      Kit.find(kit_choice).delete
   end
+
 
   def kit_sound_paths(inkit)
     chosen_kitsounds = Kitsound.where(kit_id: inkit.id)
@@ -27,19 +29,45 @@ class User < ActiveRecord::Base
   end
 
   def user_choice
-    puts "\nPlease choose from one of the following kits by number"
+    puts "\nPlease choose from one of the following kits by number\n"
     my_kits.each_with_index {|kit, index| puts " #{index + 1}: #{kit.name}"}
-    puts "\nOr \n Press 'n' to make a new kit\n Press 'd#' to delete a kit\n Type 'exit' to quit."
-    i = ""
-    while i.empty?
-      i = gets.chomp
-      if i.empty?
+    ch = ""
+    while ch.empty?
+      ch = gets.chomp
+      if ch.empty?
         puts "Input is required"
+      elsif ch.to_i < 1 || ch.to_i > my_kits.length
+        puts "You have made an invalid choice, please try again"
+        ch = ""
       end
     end
-    i
+    ch.to_i
   end
 
+  def user_choice_menu
+    prompt = TTY::Prompt.new
+    prompt.select('Select an Option') do |menu|
+      menu.choice name: 'Make new kit',  value: 1
+      menu.choice name: 'Load saved kits',  value: 2
+      menu.choice name: 'Delete kit', value: 3
+      menu.choice name: 'Exit', value: 4
+    end
+  end
+
+  def user_choice_menu_method
+    while true
+      case user_choice_menu
+      when 1
+          make_new_kit
+      when 2
+          get_chosen_kit
+      when 3
+          delete_kit
+      when 4
+          return 0
+      end
+    end
+  end
 
   def play_kit(kit)
     sp_ary = kit_sound_paths(kit)
@@ -47,26 +75,8 @@ class User < ActiveRecord::Base
   end
 
   def get_chosen_kit
-    chosen_kit = nil
-    while true
-      string_choice = user_choice
-      if string_choice == "exit"
-        return 0
-      end
-      if string_choice == "n"
-        make_new_kit
-      end
-      if string_choice[0].downcase == "d" && string_choice[1].to_i <= my_kits.length
-        delete_kit(string_choice[1].to_i)
-      end
-      choice = string_choice.to_i
-      if choice < 1 || choice.to_i > my_kits.length
-        puts "You have made an invalid choice, please try again"
-      else
-        chosen_kit = my_kits[choice - 1]
-        play_kit(chosen_kit)
-      end
-    end
+    uc = user_choice
+    play_kit(my_kits[uc-1])
   end
 
   def make_new_kit
@@ -84,11 +94,12 @@ class User < ActiveRecord::Base
 
 
   def sound_search(new_kit, type)
+    puts "Select sound by number\n"
     sounds = Sound.where('sound_path LIKE ?','%' + type + '%').all
     sounds.each_with_index do |sound, index|
       puts "#{type.capitalize} #{index + 1}"
     end
-    puts "Press P to hear all #{type}'s"
+    puts "Press P to hear all #{type}s"
       sound = 0
       sound_choice = 0
     while sound_choice < 1 || sound_choice > sounds.length
@@ -101,7 +112,7 @@ class User < ActiveRecord::Base
       sound_choice = s_sound_choice.to_i
       if sound_choice < 0 || sound_choice > sounds.length
       puts "You have made an invalid choice, please try again"
-      else 
+      else
         sound = sounds[sound_choice - 1].id
       end
     end
