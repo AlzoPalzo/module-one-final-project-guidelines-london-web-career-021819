@@ -73,8 +73,10 @@ def initialize_user
   this_user
 end
 
+binding.pry
+
 populate
 greeting
 
 this_user = new_user?
-this_user.get_chosen_kitn
+this_user.get_chosen_kit
