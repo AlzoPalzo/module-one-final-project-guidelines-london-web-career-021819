@@ -28,6 +28,7 @@ class My_window < Gosu::Window
         super 640, 480
     
         self.caption = "User: #{username}      Kit: #{kit_name}"
+        @background_image = Gosu::Image.new("lib/Images/Drum_background.jpg", :tileable => true)
         @user_kit = User_kit.new(sp1, sp2, sp3, sp4)
     end
 
@@ -55,8 +56,11 @@ class My_window < Gosu::Window
              close
          end
     end
-    def draw   
+
+    def draw  
+        @background_image.draw(0, 0, 0) 
     end
+
     def needs_cursor?
         true
     end
