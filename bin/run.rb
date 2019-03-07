@@ -64,7 +64,9 @@ def get_username
       puts "Input is required"
     end
   end
+  sleep(0.4)
   puts "Hello #{name}"
+  sleep(0.8)
   name
 end
 
