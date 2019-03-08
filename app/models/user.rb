@@ -3,10 +3,12 @@ class User < ActiveRecord::Base
 
   def default_kit
     default_kit = Kit.create(name: "#{self.name}'s' default", user_id: self.id)
-    ks1 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[3].id)
-    ks2 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[0].id)
+    ks1 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[2].id)
+    ks2 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[4].id)
     ks3 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[1].id)
-    ks4 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[5].id)
+    ks4 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[3].id)
+    ks5 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[29].id)
+    ks6 = Kitsound.create(kit_id: default_kit.id, sound_id: Sound.all[34].id)
   end
 
   def my_kits
@@ -72,7 +74,7 @@ class User < ActiveRecord::Base
 
   def play_kit(kit)
     sp_ary = kit_sound_paths(kit)
-    My_window.new(self.name, kit.name, sp_ary[0], sp_ary[1], sp_ary[2], sp_ary[3]).show
+    My_window.new(self.name, kit.name, sp_ary[0], sp_ary[1], sp_ary[2], sp_ary[3], sp_ary[4], sp_ary[5]).show
   end
 
   def get_chosen_kit
@@ -88,6 +90,9 @@ class User < ActiveRecord::Base
     sound_search(new_kit, "snare")
     sound_search(new_kit, "hat")
     sound_search(new_kit, "FX")
+    sound_search(new_kit, "tom1")
+    sound_search(new_kit, "tom2")
+    
   end
 
 
