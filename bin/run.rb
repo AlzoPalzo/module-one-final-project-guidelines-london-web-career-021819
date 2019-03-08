@@ -2,7 +2,6 @@ require_relative '../config/environment'
 require 'pry'
 @prompt = TTY::Prompt.new
 
-
 def greeting
   a = Artii::Base.new :font => 'slant'
   puts a.asciify('KEY JAMMER')
@@ -38,12 +37,6 @@ def new_user?
       load_user
   end
 end
-
-# def new_user?
-#   puts "Press 1 to create a new user\nPress 2 to load user"
-#   choice = get_choice.to_i
-#
-# end
 
 def load_user
   puts "Enter user name"
@@ -91,6 +84,5 @@ end
 
 populate
 greeting
-
 this_user = new_user?
 this_user.user_choice_menu_method

@@ -50,7 +50,8 @@ class User < ActiveRecord::Base
       menu.choice name: 'Make new kit',  value: 1
       menu.choice name: 'Load saved kits',  value: 2
       menu.choice name: 'Delete kit', value: 3
-      menu.choice name: 'Exit', value: 4
+      menu.choice name: 'Download samples *BETA*', value: 4
+      menu.choice name: 'Exit', value: 5
     end
   end
 
@@ -64,6 +65,8 @@ class User < ActiveRecord::Base
       when 3
           delete_kit
       when 4
+          main
+      when 5
           return 0
       end
     end

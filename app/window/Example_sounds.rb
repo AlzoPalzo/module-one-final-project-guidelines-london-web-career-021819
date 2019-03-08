@@ -8,6 +8,7 @@ class Example_sounds < Gosu::Window
             sleep(0.3)
             s1.play
             sleep(0.7)
-        end  
+        end
     end
+
 end
