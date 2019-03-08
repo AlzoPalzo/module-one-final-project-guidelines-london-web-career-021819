@@ -15,6 +15,7 @@ Choose a kick, snare and hat and fx: then play!
 ### Installation:
 Type brew install sdl2 into your terminal.  
 Type bundle to get the required gems.
+Run rake db:migrate in the terminal.
 
 ### Contributing:
 Fork, clone, credit. No pull requests.
