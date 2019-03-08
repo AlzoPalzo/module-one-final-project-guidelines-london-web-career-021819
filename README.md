@@ -3,13 +3,18 @@ brew install sdl2
 
 # Welcome to Key Jammer
 
-## The command line app thats got everyone talking
+## The command line drum kit
 
 ### Description:
-This app allows people to create and store a user. Create and associate drum kits for that user. Each drum kit contains different sounds like a kick and a hat, each sound is selectable from from a range of available choices.
+Choose sounds and compose rhythms through your computer keyboard. Your keys become triggers to fire samples.
+Create, load, save or delete your own kits. 
 
-But what good is creating drum kits and assigning sounds if you can't play those same drum kits. Well it turns out you can. After creating your drum kit just load it up and start rocking.
+Choose a kick, snare and hat and fx: then play!
 
-### Instalation
-Instalation is easy. Type brew install sdl2 into your terminal and then simply run bundle to get the required gems.
+
+### Installation
+Type brew install sdl2 into your terminal.  
+Type bundle to get the required gems.
+
+### Contributing
 

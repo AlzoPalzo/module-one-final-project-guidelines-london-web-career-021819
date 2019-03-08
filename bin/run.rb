@@ -51,7 +51,11 @@ def load_user
   if User.find_by_name(usr_nm)
      User.find_by_name(usr_nm)
   else
+    sleep(0.3)
+    puts
     puts "That user doesn't exist."
+    sleep(0.3)
+    puts
     new_user?
   end
 end
@@ -90,6 +94,7 @@ def initialize_user
   this_user.default_kit
   this_user
 end
+
 
 populate
 greeting
